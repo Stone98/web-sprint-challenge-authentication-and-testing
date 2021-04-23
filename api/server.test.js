@@ -52,8 +52,13 @@ describe("server.js", () => {
       const res = await request(server)
         .post("/api/auth/login")
         .send({ username: "foo", password: "1234" });
-      expect(res.body.message).toMatch(/Invalid Credentials/i);
+      expect(res.body.message).toMatch(/invalid credentials/i);
       expect(res.status).toBe(401);
+      const res2 = await request(server)
+        .post("/api/auth/login")
+        .send({ username: "foobar", password: "123456" });
+      expect(res2.body.message).toMatch(/invalid credentials/i);
+      expect(res2.status).toBe(401);
     });
   });
 });
