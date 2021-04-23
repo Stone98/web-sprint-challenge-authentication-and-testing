@@ -11,4 +11,4 @@ router.get("/", restricted, (req, res, next) => {
     .catch(next);
 });
 
-module.export = router;
+module.exports = router;
